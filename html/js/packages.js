@@ -1,6 +1,7 @@
 var providers = {
   'vodacom': 'Vodacom',
-  'cellc': 'Cell C'
+  'cellc': 'Cell C',
+  'mtn': 'MTN'
 };
 
 /***
@@ -62,7 +63,21 @@ var packages =
   't500':         { 'name':'Talk 500',                 'cost':'800.00',   'airtime':'500', 'weekend-minutes': 180},
   'st500s':       { 'name':'Smart Talk 500 S',         'cost':'925.00',   'airtime':'500', 'weekend-minutes': 180},
   't1000s':       { 'name':'Talk 1000 S',              'cost':'1540.00',  'airtime':'1000', 'weekend-minutes': 180}
-}, "cellc": {
+}, "mtn": {
+  /* mtn anytime; treat bundle rates as free minutes */
+ 'any50' :  {'name':'AnyTime 50',    'minutes': 50 /  2.30 ,    'cost': 50,    'freesms': 25 ,      'call': 2.85},
+ 'any100':  {'name':'AnyTime 100',   'minutes': 100  /  2.30 ,  'cost': 100 ,  'freesms': 25 ,      'call': 2.85},
+ 'any200':  {'name':'AnyTime 200',   'minutes': 200  /  2.30 ,  'cost': 200 ,  'freesms': 25 ,      'call': 2.85},
+ 'any350':  {'name':'AnyTime 350',   'minutes': 350  /  1.95 ,  'cost': 350 ,  'freesms': 50 ,      'call': 2.35},
+ 'any500':  {'name':'AnyTime 500',   'minutes': 500  /  1.95 ,  'cost': 500 ,  'freesms': 50 ,      'call': 2.35},
+ 'any750':  {'name':'AnyTime 750',   'minutes': 750  /  1.60 ,  'cost': 750 ,  'freesms': 100 ,     'call': 1.75},
+ 'any1200': {'name':'AnyTime 1200',  'minutes': 1200 /  1.60 ,  'cost': 1200,  'freesms': 200.00 ,  'call': 1.60},
+ 'any1500': {'name':'AnyTime 1500',  'minutes': 1500 /  1.50 ,  'cost': 1500,  'freesms': 500.00 ,  'call': 1.50},
+ 'off50':  {'name': 'Off Peak 50',   'airtime': 50,             'cost': 50,    'freesms': 25,       'offpeak': 0.95,  'peak': 2.5},
+ 'off100': {'name': 'Off Peak 100',  'airtime': 100,            'cost': 100,   'freesms': 25,       'offpeak': 0.95,  'peak': 2.5},
+ 'off200': {'name': 'Off Peak 200',  'airtime': 200,            'cost': 200,   'freesms': 25,       'offpeak': 0.95,  'peak': 2.5},
+
+},"cellc": {
 
   /*
   'winc': {

@@ -11,7 +11,9 @@ for (provider in packages) {
      * If some values are missing copy them from the main value
      **/
     var copy = {
-      'offpeak': 'call', 'peak': 'call',
+      'peak': 'call',
+      'offpeak': 'call',
+
       'sms-offpeak': 'sms', 'sms-peak': 'sms', 
       'offpeak2voda': 'call2voda', 'peak2voda': 'call2voda',
     };
@@ -33,20 +35,22 @@ for (provider in packages) {
         }
         total += pkg[mode+'2'+p];
       });
-      pkg[mode+'2'] = sprintf('%.2f', total / 4);
+      if (total) {
+        pkg[mode+'2'] = sprintf('%.2f', total / 4);
+      }
     });
 
     /***
      * Work out some R/ magic
      **/
     ['peak', 'offpeak', 'sms-peak', 'sms-offpeak'].forEach(function(mode) {
-      pkg['min-'+mode+'2'] = (pkg['airtime'] || 0) / pkg[mode+'2'];
+      pkg['min-'+mode+'2'] = (pkg['airtime'] || 0) / (pkg['bundle-call'] || pkg[mode+'2']);
       pkg['r-'+mode+'2'] = pkg['monthly'] / pkg['min-'+mode+'2'];
     });
 
     if (pkg['offpeak-airtime']) {
-      pkg['min-offpeak2'] = (pkg['offpeak-airtime'] || 0) / pkg['offpeak2'];
-      pkg['min-sms-offpeak2'] = (pkg['offpeak-airtime'] || 0) / pkg['sms-offpeak2'];
+      pkg['min-offpeak2'] = (pkg['offpeak-airtime'] || 0) / (pkg['bundle-call'] || pkg['offpeak2']);
+      pkg['min-sms-offpeak2'] = (pkg['offpeak-airtime'] || 0) / (pkg['bundle-sms'] || pkg['sms-offpeak2']);
     }
 
     pkg['min-sms-offpeak2'] += pkg['freesms'] || 0;

@@ -37,7 +37,6 @@ $(function() {
     });
 
     ['offpeak', 'peak'].forEach(function(peak) {
-
       $(prefix+peak+'-daily').anychange(function() {
         $(prefix+peak+'-monthly').nval(parseFloat($(this).val())*30);
         calcPercent();
@@ -45,12 +44,6 @@ $(function() {
       $(prefix+peak+'-monthly').anychange(function() {
         $(prefix+peak+'-daily').nval(parseFloat($(this).val())/30);
         calcPercent();
-      });
-
-      ['-monthly', '-daily'].forEach(function(suffix) {
-        $(prefix+peak+suffix).blur(function() {
-          $(this).nval($(this).val()).change();
-        });
       });
     });
   });

@@ -8,10 +8,10 @@ $(function() {
   var calculate = function(initial) {
     $thead.empty(); $tbody.empty();
 
-    var peakMonthly = $('#peak-monthly').val(),
-        offpeakMonthly = $('#offpeak-monthly').val(),
-        smsPeakMonthly = $('#sms-peak-monthly').val(),
-        smsOffpeakMonthly = $('#sms-offpeak-monthly').val();
+    var peakMonthly = parseFloat($('#peak-monthly').val()),
+        offpeakMonthly = parseFloat($('#offpeak-monthly').val()),
+        smsPeakMonthly = parseFloat($('#sms-peak-monthly').val()),
+        smsOffpeakMonthly = parseFloat($('#sms-offpeak-monthly').val());
 
     var headers = {
       'provider': {'caption': 'Provider', 'color': 'blue'},
@@ -124,13 +124,21 @@ $(function() {
 
         // Subtract used messages
         if (ps+os>0 && (v = pkg['freesms'])) {
-          var used = v / (ps+os);
-          ps -= used * v;
-          os -= used * v;
-          // Deal with underflows
-          if (ps < 0) { os = Math.max(0,ps+os); ps = 0; }
-          if (os < 0) { ps = Math.max(0,ps+os); os = 0; }
+          var remaining = 1 - v / (ps+os);
+          ps = Math.max(0, remaining * ps);
+          os = Math.max(0, remaining * os);
         }
+
+        // Subtract free minutes
+        if ((pc+oc)>0 && (v = pkg['minutes'])) {
+          var remaining = 1 - v / (pc+oc);
+          pc = Math.max(0, remaining * pc);
+          oc = Math.max(0, remaining * oc);
+        }
+
+        // @todo Work with sms bundles if no values
+        if (!pkg['sms-peak2']) pkg['sms-peak2'] = 0;
+        if (!pkg['sms-offpeak2']) pkg['sms-offpeak2'] = 0;
 
         // Work out required airtime
         var airtimePeak = pkg['used-airtime-peak'] =
