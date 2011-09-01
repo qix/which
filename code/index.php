@@ -131,7 +131,7 @@ function append_control($id, $caption, $append, $default) {
   </div>
   <div class="row">
    <div class="span4 columns">
-    <strong>Want to know your bes option?</strong>
+    <strong>Want to know your best option?</strong>
     <p>We'll work out how much each package will cost you with the extra's you'll need, and show it below.</p>
    </div>
    <div class="span6 columns">
@@ -145,7 +145,8 @@ function append_control($id, $caption, $append, $default) {
 <div style="padding: 20px">
  <section id="results">
   <div class="page-header">
-   <h1>Our suggestions</h1>
+   <h1>Package Options</h1>
+    <p>Click on columns to sort the table, or hover over package names to see a breakdown of fees paid.</p>
   </div>
   <table class="zebra-striped">
    <thead>
