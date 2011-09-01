@@ -1,0 +1,6 @@
+[submodule "ext/bootstrap"]
+	path = ext/bootstrap
+	url = https://github.com/twitter/bootstrap.git
+[submodule "ext/free"]
+	path = ext/free
+	url = git@github.com:qix/free.git

@@ -1,0 +1,13 @@
+#header {
+  padding: 20px;
+  background-color: #EEE;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #DDD;
+}
+#header p {
+  font-size: 14px;
+}
+#header small {
+  padding-left: 20px;
+  font-size: 12px;
+}
