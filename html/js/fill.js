@@ -1,9 +1,13 @@
+//packages['vodacom'] = undefined;
+//packages['cellc'] = undefined;
+//packages['mtn'] = undefined;
+//packages['8ta'] = undefined;
 
 for (provider in packages) {
   for (code in packages[provider]) {
     pkg = packages[provider][code];
 
-    ['setup', 'airtime', 'minutes', 'freesms'].forEach(function(k) {
+    ['setup', 'airtime', 'minutes', 'freesms', 'freedata'].forEach(function(k) {
       if (!pkg[k]) pkg[k] = 0;
     });
 
@@ -36,7 +40,7 @@ for (provider in packages) {
         total += pkg[mode+'2'+p];
       });
       if (total) {
-        pkg[mode+'2'] = sprintf('%.2f', total / 4);
+        pkg[mode+'2'] = total / 4;
       }
     });
 
@@ -53,6 +57,9 @@ for (provider in packages) {
       pkg['min-sms-offpeak2'] = (pkg['offpeak-airtime'] || 0) / (pkg['bundle-sms'] || pkg['sms-offpeak2']);
     }
 
+    pkg['min-offpeak2'] += pkg['minutes'] || 0;
+    pkg['min-peak2'] += pkg['minutes'] || 0;
+
     pkg['min-sms-offpeak2'] += pkg['freesms'] || 0;
     pkg['min-sms-peak2'] += pkg['freesms'] || 0;
 
@@ -60,6 +67,13 @@ for (provider in packages) {
       pkg['r-'+mode+'2'] = pkg['min-'+mode+'2'] ? (pkg['cost'] / pkg['min-'+mode+'2']) : 0;
     });
 
+    for (var k in pkg) {
+      if (!/[^0-9.]/.test(pkg[k])) {
+        pkg[k] = parseFloat(pkg[k]);
+      }
+    }
+
     packages[provider][code] = pkg;
   }
 }
+

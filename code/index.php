@@ -65,10 +65,9 @@ function append_control($id, $caption, $append, $default) {
 </div>
 <div id="popover" class="popover right">
   <div class="arrow"></div>
-  <div class="inner">
+  <div class="inner" style="width: 480px;">
     <h3 class="title">Popover Title</h3>
     <div class="content">
-      <p>Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
     </div>
   </div>
 </div>
@@ -113,12 +112,12 @@ function append_control($id, $caption, $append, $default) {
     <p>Some networks give you discounts for calling others on the same network</p>
    </div>
    <div class="span6 columns">
-    <?php append_control('peak-daily', '8ta', '%', 25); ?>
-    <?php append_control('offpeak-daily', 'Cell C', '%', 25); ?>
+    <?php append_control('percent-8ta', '8ta', '%', 25); ?>
+    <?php append_control('percent-cellc', 'Cell C', '%', 25); ?>
    </div>
    <div class="span6 columns">
-    <?php append_control('peak-monthly', 'MTN', '%', 25); ?>
-    <?php append_control('offpeak-monthly', 'Vodacom', '%', 25); ?>
+    <?php append_control('percent-mtn', 'MTN', '%', 25); ?>
+    <?php append_control('percent-cellc', 'Vodacom', '%', 25); ?>
    </div>
   </div>
   <div class="row">

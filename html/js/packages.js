@@ -1,7 +1,8 @@
 var providers = {
   'vodacom': 'Vodacom',
   'cellc': 'Cell C',
-  'mtn': 'MTN'
+  'mtn': 'MTN',
+  '8ta': '8ta'
 };
 
 /***
@@ -16,21 +17,21 @@ var providers = {
 var packages = 
 {"vodacom": {
   /* http://www.vodacom.co.za/vodacom/Deals/Contract/Top+Up+Price+Plans/ */
-  'u49':   { 'name': 'Top Up 49',           'cost': 49.00,    'airtime': 49},
-  'u75s':  { 'name': 'Vodacom 4U 75s',      'cost': 75.00,    'airtime': 75},
-  'u75':   { 'name': 'Top Up 75',           'cost': 75.00,    'airtime': 75},
-  'u99':   { 'name': 'Vodacom 4 Less 99',   'cost': 99.00,    'airtime': 99},
-  'u135':  { 'name': 'Top Up 135',          'cost': 135.00,   'airtime': 135},
-  'u135s': { 'name': 'Top Up 135 S',        'cost': 135.00,   'airtime': 135},
-  'u199':  { 'name': 'Vodacom 4 Less 199',  'cost': 199.00,   'airtime': 199},
-  'u200':  { 'name': 'Top Up 200',          'cost': 200.00,   'airtime': 200},
-  'u275':  { 'name': 'Topup 275',           'cost': 275.00,   'airtime': 275},
-  'u315s': { 'name': 'Top Up 315 S',        'cost': 315.00,   'airtime': 315},
-  'u315':  { 'name': 'Top Up 315',          'cost': 315.00,   'airtime': 315},
-  'u400s': { 'name': 'Top Up 400 S',        'cost': 400.00,   'airtime': 400},
-  'u500':  { 'name': 'Top Up 500',          'cost': 500.00,   'airtime': 500},
-  'u590':  { 'name': 'Top Up 590',          'cost': 590.00,   'airtime': 590},
-  'u1000': { 'name': 'Top Up 1000',         'cost': 1000.00,  'airtime': 1000},
+  'u49':   { 'name': 'Top Up 49',           'data': 1, 'cost': 49.00,    'airtime': 49},
+  'u75s':  { 'name': 'Vodacom 4U 75s',      'data': 1, 'cost': 75.00,    'airtime': 75},
+  'u75':   { 'name': 'Top Up 75',           'data': 1, 'cost': 75.00,    'airtime': 75},
+  'u99':   { 'name': 'Vodacom 4 Less 99',   'data': 1, 'cost': 99.00,    'airtime': 99},
+  'u135':  { 'name': 'Top Up 135',          'data': 1, 'cost': 135.00,   'airtime': 135},
+  'u135s': { 'name': 'Top Up 135 S',        'data': 1, 'cost': 135.00,   'airtime': 135},
+  'u199':  { 'name': 'Vodacom 4 Less 199',  'data': 1, 'cost': 199.00,   'airtime': 199},
+  'u200':  { 'name': 'Top Up 200',          'data': 1, 'cost': 200.00,   'airtime': 200},
+  'u275':  { 'name': 'Topup 275',           'data': 1, 'cost': 275.00,   'airtime': 275},
+  'u315s': { 'name': 'Top Up 315 S',        'data': 1, 'cost': 315.00,   'airtime': 315},
+  'u315':  { 'name': 'Top Up 315',          'data': 1, 'cost': 315.00,   'airtime': 315},
+  'u400s': { 'name': 'Top Up 400 S',        'data': 1, 'cost': 400.00,   'airtime': 400},
+  'u500':  { 'name': 'Top Up 500',          'data': 1, 'cost': 500.00,   'airtime': 500},
+  'u590':  { 'name': 'Top Up 590',          'data': 1, 'cost': 590.00,   'airtime': 590},
+  'u1000': { 'name': 'Top Up 1000',         'data': 1, 'cost': 1000.00,  'airtime': 1000},
 
   /* http://www.vodacom.co.za/vodacom/Deals/Contract/Contract+monthly+Plans */
   /*'': {'name':'4U Contract','cost':'0.00','airtime':'0'}, 
@@ -98,11 +99,11 @@ var packages =
     'airtime': 0,
     'peak2cellc': 1.6,
     'peak': 1.75,
-    'peak2telkom': 1.6,
+    'peak2land': 1.6,
     'sms-peak': 0.8,
     'offpeak2cellc': 0.95,
     'offpeak': 1.1,
-    'offpeak2telkom': 0.95,
+    'offpeak2land': 0.95,
     'sms-offpeak': 0.34,
     'family-peak2cellc': 1.5,
     'family-offpeak2cellc': 0.75,
@@ -110,7 +111,43 @@ var packages =
 
     
 
+}, "8ta": {
+
+  'prepaid': {
+    'name': 'Prepaid',
+    'setup': 0,
+    'cost': 0,
+    'offpeak2land': 0.65,
+    'peak2land': 0.65,
+    'offpeak': 1.5,
+    'peak': 1.5,
+    'data': 1
+  }
 }};
+
+[[1, '1', 90, 90, 15, 25],
+ [2, '2', 130, 130, 30, 25],
+ [3, '3', 230, 230, 60, 25],
+ ["3P", '3 Plus', 350, 350, 90, 50],
+ [4, '4', 500, 500, 200, 50],
+].forEach(function(row) {
+  packages['8ta']['contract'+row[0]] = {
+    'name': 'Contract '+row[1],
+    'setup': 0,
+    'cost': row[2],
+    'minutes28ta': row[3],
+    'minutes': row[4],
+    'freedata': row[5],
+    'peak28ta': 0.95,
+    'offpeak28ta': 0.95,
+    'peak': 1.75,
+    'offpeak': 0.95,
+    'sms': 0.5,
+    'data': 1,
+    'peak2land': 0.65,
+    'offpeak2land': 0.65
+  }
+});
 
 /* http://www.cellc.co.za/packages/businesschat */
 [['standard',  185,   0,     1.65,  2,  1.15,  0.8,  0.95,  1.1,  0.95,  0.36],
@@ -126,11 +163,11 @@ var packages =
   'airtime': row[2],
   'peak2cellc': row[3],
   'peak': row[4],
-  'peak2telkom': row[5],
+  'peak2land': row[5],
   'sms-peak': row[6],
   'offpeak2cellc': row[7],
   'offpeak': row[8],
-  'offpeak2telkom': row[9],
+  'offpeak2land': row[9],
   'sms-offpeak': row[10],
   });
 });
@@ -149,11 +186,11 @@ var packages =
   'family-offpeak2cellc': 0.75,
   'peak2cellc': 1.7,
   'peak': 2.23,
-  'peak2telkom': 1.7,
+  'peak2land': 1.7,
   'sms-peak': 0.8,
   'offpeak2cellc': 0.95,
   'offpeak': 1.15,
-  'offpeak2telkom': 0.95,
+  'offpeak2land': 0.95,
   'sms-offpeak': 0.36,
   });
 });
@@ -173,11 +210,11 @@ var packages =
   'family-offpeak2cellc': 0.75,
   'peak2cellc': 1.8,
   'peak': 2.7,
-  'peak2telkom': 2.3,
+  'peak2land': 2.3,
   'sms-peak': 0.8,
   'offpeak2cellc': 0.9,
   'offpeak': 1.0,
-  'offpeak2telkom': 0.95,
+  'offpeak2land': 0.95,
   'sms-offpeak': 0.36,
   });
 });
@@ -207,11 +244,11 @@ var packages =
       'family-offpeak': type[4],
       'peak2cellc': type[5],
       'peak': type[6],
-      'peak2telkom': type[7],
+      'peak2land': type[7],
       'sms-peak': type[8],
       'offpeak2cellc': type[9],
       'offpeak': type[10],
-      'offpeak2telkom': type[11],
+      'offpeak2land': type[11],
       'sms-offpeak': type[12]
     });
   });
